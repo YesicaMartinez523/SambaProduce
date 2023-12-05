@@ -1,0 +1,47 @@
+<section class="d-grid px-5">
+    <div class="col-12 text-center">
+        <div class="col-12 d-flex align-items-center my-2">
+            <div class="col-4">
+                <h1 class="text_color_principal">Registro de actividad</h1>
+            </div>
+            <div class="col-4">
+                <img class="width_img" [src]="imageLogo">
+            </div>
+            <div class="col-4">
+                <h1 class="text_color_principal">Mantenimiento Maquinaria</h1>
+            </div>
+        </div>
+    </div>
+</section>
+<section>
+    <nav class="navbar navbar-expand-lg bg_color">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="col-6 collapse navbar-collapse">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 mx-auto">
+                    <li class="nav_item px-5">
+                        <a class="nav-link active" href="#">Inicio</a>
+                    </li>
+                    <li class="nav-item px-5">
+                        <a class="nav-link" href="#">Agricultura</a>
+                    </li>
+                    <li class="nav-item px-5">
+                        <a class="nav-link" href="#">Acerca de</a>
+                    </li>
+                </ul>
+                <div class="btn-group">
+                    <button (click)="activarCerrarSesion()" type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fa-solid fa-user"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div *ngIf="!activarCerrar" class="col-12 d-flex justify-content-end align-items-center text-end index">
+        <div>
+            <a class="cerrar_sesion" href="#">CERRAR SESION</a>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,89 @@
+<section class="col-12 d-grid">
+    <div>
+        <div class="d-flex justify-content-center mx-5">
+            <div class="col-3 underline_end"></div>
+            <div class="col-6">
+                <h1 class="text-center mt-4 ">REGISTRO DE ACTIVIDAD</h1>
+            </div>
+            <div class="col-3 underline_end"></div>
+        </div>
+        <form [formGroup]="registroActividadFormulario" class="px-4 d-flex col-12">
+            <div class="d-flex col-6">
+                <div class="col-12 text-start">
+                    <div class="col-12 d-flex py-3">
+                        <label for="" class="col-4 label_1 font_text_label justify-content-end aling-items-center">Fecha</label>
+                        <input class="col-6 find_1 text_center" type="text" placeholder="{{fecha}}" readonly>
+                    </div>
+                    <div class="col-11">
+                        <label for="" class="font_text_label py-3 justify-content-end">Nombre Operario</label>
+                        <input type="name" placeholder="Ingrese su Nombre Completo" class="form-control py-2" formControlName="nombreOperario">
+                    </div>
+                    <div class="col-11">
+                        <label for="" class="font_text_label py-3 justify-content-end">Lugar Trabajo</label>
+                        <input type="name" placeholder="Lugar de trabajo" class="form-control py-2" formControlName="lugarTrabajo">
+                    </div>
+                    <div class="col-11">
+                        <label for="" class="font_text_label py-3 justify-content-end">Trabajo Desempeñado</label>
+                        <input type="name" placeholder="Ingrese el trabajo desempeñado" class="form-control py-2" formControlName="trabajoDesempeñado">
+                    </div>
+                    <div class="col-6 my-5 px-5">
+                        <button (click)="crearRegistroActividad()" class="botton_primary py-1 btn_1" type="submit">Guardar Registro</button>
+                    </div>
+                </div>
+            </div>
+            <div class="d-flex col-6">
+                <div class="col-12 text-start">
+                    <div class="col-12 d-flex py-3">
+                        <label for="" class="col-3 label_1 font_text_label justify-content-end aling-items-center">Modelo</label>
+                        <div class="col-8 find_1 text-center">
+                            <span [ngClass]="{
+                                'bg_status_ok': maquinaria.maquinariaEstado === 'Ok',
+                                'bg_status_advertencia': maquinaria.maquinariaEstado === 'Urgente',
+                                'bg_status_pendiente': maquinaria.maquinariaEstado === 'Pendiente'}">
+                                {{textEstado}}
+                            </span>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{maquinaria.maquinariaMarca}}&nbsp;&nbsp;{{maquinaria.maquinariaNombre}}
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="col-12 d-flex justify-content-between">
+                            <div class="col-5">
+                                <label for="" class="font_text_label py-3 justify-content-end">Hora Inicial</label>
+                                <input type="name" placeholder="{{maquinaria.maquinariaHora}}" class="form-control py-2" readonly>
+                            </div>
+                            <div class="col-6">
+                                <label for="" class="font_text_label py-3 justify-content-end">Hora Final</label>
+                                <input type="name" placeholder="Ingrese Hora" class="form-control py-2" formControlName="horasTrabajadas">
+                            </div>
+                        </div>
+                        <div class="col-12 d-flex justify-content-between">
+                            <div class="col-5">
+                                <label for="" class="font_text_label py-3 justify-content-end">Galones</label>
+                                <input type="name" placeholder="No Galones" class="form-control py-2" formControlName="combustible">
+                            </div>
+                            <div class="col-6">
+                                <label for="implemento"
+                                    class="font_text_label py-3 justify-content-end">Implemento</label>
+                                <form [formGroup]="implementoFormulario">
+                                    <select formControlName="implemento" class="form-select py-2">
+                                        <option class="size_1" value="" disabled selected>Seleccionar Implemento</option>
+                                        <option class="size_1" *ngFor="let implemento of listaImplementos; let i = index" [ngValue]="implemento">
+                                        {{implemento.implementosNombre}}
+                                        </option>
+                                    </select>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <label for="" class="font_text_label py-3 justify-content-end">Eventualidades</label>
+                        <input type="name" placeholder="Ingrese el trabajo desempeñado" class="form-control py-2" formControlName="eventualidades">
+                    </div>
+                    <div class="col-6 my-5">
+                        <button class="botton_primary py-1 btn_2" routerLink="../lista-registro-actividad"type="submit">Ver Registros</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>

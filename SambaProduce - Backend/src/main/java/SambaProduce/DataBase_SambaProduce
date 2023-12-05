@@ -1,0 +1,150 @@
+CREATE DATABASE samba_produce;
+
+USE samba_produce;
+
+-- Crear tipo_categoria_samba
+CREATE TABLE tipo_categoria_samba (
+    tipo_categoria_id INT PRIMARY KEY AUTO_INCREMENT,
+    tipo_categoria_nombre VARCHAR(50),
+    tipo_categoria_estado VARCHAR(20)
+);
+-- Crear maquinaria_samba
+CREATE TABLE maquinaria_samba (
+    maquinaria_id INT PRIMARY KEY AUTO_INCREMENT,
+    maquinaria_nombre VARCHAR(100),
+    maquinaria_placa VARCHAR(50),
+    maquinaria_combustible VARCHAR(60),
+    maquinaria_color VARCHAR(30),
+    maquinaria_marca VARCHAR(50),
+    maquinaria_hora INT,
+    maquinaria_ultimo_mantenimiento INT,
+    maquinaria_estado VARCHAR(20),
+    tipo_categoria_id INT,
+    FOREIGN KEY (tipo_categoria_id) REFERENCES tipo_categoria_samba (tipo_categoria_id)
+);
+-- Crear registro_actividad_samba
+CREATE TABLE registro_actividad_samba (
+    registro_actividad_id INT PRIMARY KEY AUTO_INCREMENT,
+    registro_actividad_fecha DATE,
+    registro_actividad_operario VARCHAR(100),
+    registro_actividad_trabajo_realizado VARCHAR(250),
+    registro_actividad_sitio_trabajo VARCHAR(200),
+    registro_actividad_eventualidades VARCHAR(255),
+    registro_actividad_hora INT,
+    maquinaria_id INT,
+    FOREIGN KEY (maquinaria_id) REFERENCES maquinaria_samba (maquinaria_id)
+);
+-- Crear implementos_samba
+CREATE TABLE implementos_samba (
+    implementos_id INT PRIMARY KEY AUTO_INCREMENT,
+    implementos_nombre VARCHAR(100),
+    registro_actividad_id INT,
+    maquinaria_id INT,
+    FOREIGN KEY (registro_actividad_id) REFERENCES registro_actividad_samba (registro_actividad_id),
+    FOREIGN KEY (maquinaria_id) REFERENCES maquinaria_samba (maquinaria_id)
+);
+-- Crear mantenimientos_samba
+CREATE TABLE mantenimientos_samba (
+    mantenimientos_id INT PRIMARY KEY AUTO_INCREMENT,
+    mantenimientos_nombre VARCHAR(100),
+    mantenimientos_descripcion VARCHAR (255),
+    mantenimientos_hora_fija INT
+);
+-- Crear registro_mantenimientos_samba
+CREATE TABLE registro_mantenimientos_samba (
+    registro_mantenimientos_id INT PRIMARY KEY AUTO_INCREMENT,
+    registro_mantenimientos_fecha DATE,
+    maquinaria_id INT,
+    mantenimientos_id INT,
+    FOREIGN KEY (maquinaria_id) REFERENCES maquinaria_samba (maquinaria_id),
+	FOREIGN KEY (mantenimientos_id) REFERENCES mantenimientos_samba (mantenimientos_id)
+);
+-- Crear relacion_mantenimientos_maquina_samba
+CREATE TABLE relacion_mantenimientos_maquina_samba (
+	relacion_mantenimientos_maquina_id INT PRIMARY KEY AUTO_INCREMENT,
+    relacion_mantenimientos_maquina_hora INT,
+    relacion_mantenimientos_maquina_estado VARCHAR(30),
+	maquinaria_id INT,
+    mantenimientos_id INT,
+    FOREIGN KEY (maquinaria_id) REFERENCES maquinaria_samba (maquinaria_id),
+	FOREIGN KEY (mantenimientos_id) REFERENCES mantenimientos_samba (mantenimientos_id)
+);
+
+-- Insertar Categorias
+INSERT INTO tipo_categoria_samba (tipo_categoria_nombre, tipo_categoria_estado) VALUES
+('volqueta', 'Ok'),
+('cosechadora', 'Ok'),
+('tractor', 'Ok'),
+('sembrador', 'Ok'),
+('vehiculo', 'Ok');
+
+-- Insertar Maquinarias
+INSERT INTO maquinaria_samba (maquinaria_nombre, maquinaria_placa, maquinaria_combustible, maquinaria_color, maquinaria_marca, maquinaria_hora, maquinaria_estado, tipo_categoria_id )
+VALUES
+('TRACTOR JD 5725 N 1', 'LMN456', 'Gasolina', 'Azul', 'Case IH', 0,'Ok', 3),
+('TRACTOR JD 5725 N 2', 'DEF789', 'Diésel', 'Amarillo', 'Volvo', 0,'Ok', 4),
+('TRACTOR VALTRA N 2', 'GHI012', 'Diésel', 'Naranja', 'Caterpillar', 0,'Ok', 5),
+('TRACTOR VALTRA N 4', 'JKL345', 'Diésel', 'Gris', 'New Holland', 0,'Ok', 1),
+('TRACTOR CLERY RD 254A', 'PQR678', 'Gasolina', 'Rojo', 'Massey Ferguson', 0,'Ok', 2),
+('TRACTOR CASE F 35 N 1', 'VWX234', 'Diésel', 'Blanco', 'John Deere', 0,'Ok', 3),
+('TRACTOR CASE FARMALL 55', 'YZA567', 'Gasolina', 'Verde', 'Kubota', 0,'Ok', 4),
+('TRACTOR CASE F 35 N 2', 'UVW789', 'Diésel', 'Rojo', 'John Deere', 0,'Ok', 5),
+('NISSAN', 'MWM-143', 'Diésel', 'Gris', 'NISSAN', 0,'Ok', 1),
+('CAMION JAC', 'GHI678', 'Diésel', 'Gris', 'JAC', 0,'Ok', 2),
+('RETROEXCAVADORA JCB', 'GHI678', 'Diésel', 'Gris', 'JCB', 0,'Ok', 3),
+('COMBINADA JD 1175  # 1', 'VWX567', 'Diésel', 'Verde', 'John Deere', 0,'Ok', 4),
+('COMBINADA JD 1175  # 2', 'YZA890', 'Gasolina', 'Azul', 'Kubota', 0,'Ok', 5),
+('SEMBRADORA  # 2', 'YZA890', 'Gasolina', 'Azul', 'Kubota', 0,'Ok', 1);
+
+-- Insertar implementos
+INSERT INTO implementos_samba(implementos_nombre) VALUES
+('ARADO APOLO COMPAÑIA'),
+('CAMABAJA ROJO N 1'),
+('CAMABAJA VERDE'),
+('CAMION JAC'),
+('CINCEL VIBRATORIO'),
+('EMBALCONADORA MAIZ'),
+('ESTIERCOLERA'),
+('GONDOLA #3'),
+('GONDOLA 4 RUEDAS N 3'),
+('GONDOLA N 1'),
+('GONDOLA N 2'),
+('NIVELADORA LAND PLANE N 1'),
+('PICORRI COMBINADA 1175-319 N 2'),
+('PICORRIL COMBINADA 1175-316 N 1'),
+('PICORRIL DE MAIZ 206 6 SURCOS JD'),
+('RASTRA N 3 AMARILLO'),
+('RASTRA AZUL N 1'),
+('RASTRA INTERAGRO 28 D N 5'),
+('RASTRA INTERAGRO 32 D N 4'),
+('RASTRA PULIDOR DE ALCE HIDRAULICO 3 PUNTO5'),
+('RASTRA ROJO N 2'),
+('REMOLQUE AMARILLA PEQUEÑA N 1'),
+('REMOLQUE DOS RUEDAS CONVENCIONAL'),
+('REMOLQUE FUMIGACION N 2'),
+('REMOLQUE GANADO N 3'),
+('REMOLQUE PLANCHON N 2'),
+('REMOLQUE SOTO N 1'),
+('RIEL'),
+('ROME DE TIRO 14 DISCOS'),
+('ROTO SPEED ROJO AGROTEC N2'),
+('ROTO SPEED ROJO MONTANA N1'),
+('SEMBRADORA NEUMATICA DE MAIZ'),
+('SEMBRADORA SEMEATO 17 LINEAS N 1'),
+('SEMBRADORA SEMEATO 17 LINEAS N 2'),
+('TAIPA INTERAGRO N 2'),
+('TAIPA SOTO N 1'),
+('TRANSPORTADOR BESTIAS'),
+('TRANSPORTADOR PICORRIL N1'),
+('TRANSPORTADOR PICORRIL N2'),
+('ZANJADOR AC3139'),
+('ZORRA DE ALCE HIDRAULICO PARA MAIZ 2'),
+('ZORRA DE ALCE HIDRAULICO PARA MAIZ 3'),
+('ZORRA SOTO'),
+('ZORRA');
+
+-- Insertar mantenimientos
+INSERT INTO mantenimientos_samba(mantenimientos_nombre, mantenimientos_descripcion, mantenimientos_hora_fija) VALUES
+('Cambio Aceite', 'Cambio de aceite en la seccion del motor por donde esta la bobina', 250),
+('Verificar Hidraulico', 'verificar el aceite hidraulico por donde se presenter mejorar para corregir', 100),
+('Reemplazar Llantas', 'cambiar las llantas que esten con problemas de caucho', 460);

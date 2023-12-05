@@ -1,0 +1,35 @@
+<section class="col-12">
+    <div class="d-flex justify-content-center mx-5">
+        <div class="col-3 underline_end"></div>      
+            <div class="col-6">
+                <h1 class="text-center mt-4 text_titulo">Registros de Maquinaria</h1>
+            </div>
+        <div class="col-3 underline_end"></div>      
+    </div>
+    <div class="card-body mt-3">
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th class="font_text_label text-center">Fecha</th>
+                        <th class="font_text_label text-center">Nombre Operario</th>
+                        <th class="font_text_label text-center">Horas registradas</th>
+                        <th class="font_text_label text-center">Opciones</th>
+                    </tr>
+                </thead>
+                <tbody class="font_text_label text-center my-5">
+                    <tr *ngFor="let registroActividad of listaRegistroActividad; let i = index">
+                        <td>{{registroActividad.registroActividadFecha}}</td>
+                        <td>{{registroActividad.registroActividadOperario}}</td>
+                        <td>{{registroActividad.registroActividadHora}}</td>
+                        <td>
+                            <button (click)="eliminarRegistroActividad(i)" class="btn_three" type="submit">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="svg_icon"><g id="_01_align_center" data-name="01 align center"><path d="M22,4H17V2a2,2,0,0,0-2-2H9A2,2,0,0,0,7,2V4H2V6H4V21a3,3,0,0,0,3,3H17a3,3,0,0,0,3-3V6h2ZM9,2h6V4H9Zm9,19a1,1,0,0,1-1,1H7a1,1,0,0,1-1-1V6H18Z"/><rect x="9" y="10" width="2" height="8"/><rect x="13" y="10" width="2" height="8"/></g></svg>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
