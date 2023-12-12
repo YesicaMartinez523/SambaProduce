@@ -2,6 +2,17 @@ CREATE DATABASE samba_produce;
 
 USE samba_produce;
 
+-- Crear usuario_samba
+CREATE TABLE usuario_samba(
+usuario_id VARCHAR(50),
+usuario_nombre VARCHAR(50),
+usuario_apellido VARCHAR(20),
+usuario_email VARCHAR(20),
+usuario_contrasenia VARCHAR(20),
+usuario_numero VARCHAR(10),
+usuario_identificacion VARCHAR(10)
+);
+
 -- Crear tipo_categoria_samba
 CREATE TABLE tipo_categoria_samba (
     tipo_categoria_id INT PRIMARY KEY AUTO_INCREMENT,

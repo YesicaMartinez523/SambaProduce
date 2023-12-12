@@ -14,4 +14,6 @@ public interface RespuestaInformacion {
     String ACTUALIZAR_FALLIDA = "No se actualizo correctamente";
     String ELIMINAR_CORRECTAMENTE = "OK se elimino correctamente";
     String ELIMINAR_FALLIDA = "No se elimino correctamente";
+    String LOGIN_CORRECTAMENTE = "OK se Inicio Sesion correctamente";
+    String LOGIN_FALLIDA = "No se Inicio Sesion correctamente";
 }

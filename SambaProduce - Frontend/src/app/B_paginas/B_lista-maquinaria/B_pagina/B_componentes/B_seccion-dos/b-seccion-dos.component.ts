@@ -51,7 +51,7 @@ export class BSeccionDosComponent implements OnInit, OnChanges{
   }
   
   leerListaMaquinariaPorIdCategoria(){
-    this.listaMaquinaria = []
+    this.listaMaquinaria = [];
     this.leerListaMaquinariaPorIdCategoriaService.leerListaMaquinariaPorIdCategoria(this.idCategoria).subscribe(
       (res: RespuestaGeneral) => {
         for (let maquinaria of res.objectoRespuesta){

@@ -58,7 +58,13 @@ public class MaquinariaServicio {
                 maquinariaEntidad.setMaquinariaEstado(Estado.URGENTE);
                 crearEstadoMaquinariaYCategoria(maquinariaEntidad, Estado.URGENTE);
                 return maquinariaEntidad;
-            } else if (estado.equals(Estado.PENDIENTE)) {
+            }
+        }
+        for (RelacionMantenimientosMaquinaEntidad mantenimientosMaquina : listaRelacionMantenimientosMaquina) {
+
+            String estado = mantenimientosMaquina.getRelacionMantenimientosMaquinaEstado();
+
+            if (estado.equals(Estado.PENDIENTE)) {
                 maquinariaEntidad.setMaquinariaEstado(Estado.PENDIENTE);
                 crearEstadoMaquinariaYCategoria(maquinariaEntidad, Estado.PENDIENTE);
                 return maquinariaEntidad;
@@ -72,6 +78,7 @@ public class MaquinariaServicio {
             Optional<TipoCategoriaEntidad> tipoCategoriaEntidad =
                     this.tipoCategoriaRepositorio.findById(maquinariaEntidad.getTipoCategoriaEntidad().getTipoCategoriaId());
             tipoCategoriaEntidad.get().setTipoCategoriaEstado(estado);
+            maquinariaEntidad.setMaquinariaEstado(estado);
             this.tipoCategoriaRepositorio.save(tipoCategoriaEntidad.get());
             this.maquinariaRepositorio.save(maquinariaEntidad);
         }catch (Exception e){}

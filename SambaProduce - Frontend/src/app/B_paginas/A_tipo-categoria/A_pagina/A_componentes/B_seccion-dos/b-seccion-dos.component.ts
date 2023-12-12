@@ -11,7 +11,7 @@ import { GuardarLocalIdCategoriaService } from 'src/app/C_sevicios/C_guardarLoca
   styleUrls: ['./b-seccion-dos.component.scss']
 })
 export class BSeccionDosComponent {
-  imageN1 = rutaImagenes.IMAGE_N1;
+  imageN1 = rutaImagenes.IMAGE_P1;
   imageLogo = rutaImagenes.IMAGE_LOGO;
   
   tipoCategoriaEntidad:TipoCategoriaEntidad [] = [];
